@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderHamper.Api", "HamperSystem\OrderHamper.Api.csproj", "{0771F69B-314B-437D-9614-A9419F42C3AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderHamper.Domain", "Order.Domain\OrderHamper.Domain.csproj", "{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0771F69B-314B-437D-9614-A9419F42C3AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0771F69B-314B-437D-9614-A9419F42C3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0771F69B-314B-437D-9614-A9419F42C3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0771F69B-314B-437D-9614-A9419F42C3AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFEE509F-C711-4168-B635-AD29FC32D7DD}
+	EndGlobalSection
+EndGlobal
