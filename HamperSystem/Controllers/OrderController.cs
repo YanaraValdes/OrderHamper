@@ -40,9 +40,10 @@ namespace OrderHamper.Api.Controllers
             {
                 //Todo: It's good idea to take advantage of GetOrderByIdQuery and handle by GetCustomerByIdQueryHandler
                 //var order customer = await _mediator.Send(new GetOrderByIdQuery(orderId));
-                var order = await _orderService.GetOrderAsync(orderId);
+                //var order = await _orderService.GetOrderAsync(orderId);
 
-                return Ok(order);
+                //return Ok(order);
+                return Ok();
             }
             catch
             {
