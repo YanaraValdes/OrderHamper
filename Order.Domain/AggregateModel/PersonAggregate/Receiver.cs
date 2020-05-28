@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OrderHamper.Domain.AggregateModel.PersonAggregate
 {
-    public abstract class Receiver : IEntity, IAggregateRoot
+    public abstract class Receiver : Entity, IAggregateRoot
     {
         public string IdentityGuid { get; private set; }
 

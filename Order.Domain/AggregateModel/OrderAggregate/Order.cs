@@ -6,34 +6,27 @@ using System.Linq;
 
 namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 {
-    public class Order : IEntity, IAggregateRoot
+    public class Order : Entity, IAggregateRoot
     {
         private readonly List<OrderItem> _orderItems;
         public OrderAddress Address { get; private set; }
-        public int _receiverId { get; private set; }
-
-        public DateTime CreatedOn { get; private set; }
-
-        public DateTime ModifiedOn { get; private set; }
-
-        public string Id { get; private set; }
+        public int ReceiverId { get; private set; }        
 
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
         public OrderStatus OrderStatus { get; private set; }
+        public int OrderStatusId { get; set; }       
 
-        private int _orderStatusId;
+        public Order()
+        {
 
-        private string _description;
+        }
 
         public Order(string id, int receiverId, OrderAddress address)
-        {
-            var timeSpan = DateTime.Now;
-            _receiverId = receiverId;
-            CreatedOn = timeSpan;
-            ModifiedOn = timeSpan;
+        {            
+            ReceiverId = receiverId;            
             Id = id;
             Address = address;
-            _orderStatusId = OrderStatus.Submitted.Id;
+            OrderStatusId = OrderStatus.Submitted.Id;
 
         }
 
@@ -62,52 +55,12 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
                 _orderItems.Add(orderItem);
             }
         }
-
-        public void SetAwaitingValidationStatus()
-        {
-            if (_orderStatusId == OrderStatus.Submitted.Id)
-            {
-                _orderStatusId = OrderStatus.AwaitingValidation.Id;
-            }
-        }
-
-        public void SetStockConfirmedStatus()
-        {
-            if (_orderStatusId == OrderStatus.AwaitingValidation.Id)
-            {       
-                _orderStatusId = OrderStatus.StockConfirmed.Id;
-                _description = "All the items were confirmed with available stock.";
-            }
-        }
+        
 
         public void SetReceiverId(int id)
         {
-            _receiverId = id;
-        }
-
-        public void SetShippedStatus()
-        {
-            if (_orderStatusId != OrderStatus.Paid.Id)
-            {
-                StatusChangeException(OrderStatus.Shipped);
-            }
-
-            _orderStatusId = OrderStatus.Shipped.Id;
-            _description = "The order was shipped.";            
-        }
-
-        public void SetCancelledStatus()
-        {
-            if (_orderStatusId == OrderStatus.Paid.Id ||
-                _orderStatusId == OrderStatus.Shipped.Id)
-            {
-                StatusChangeException(OrderStatus.Cancelled);
-            }
-
-            _orderStatusId = OrderStatus.Cancelled.Id;
-            _description = $"The order was cancelled.";
-            
-        }
+            ReceiverId = id;
+        }        
 
         private void StatusChangeException(OrderStatus orderStatusToChange)
         {
