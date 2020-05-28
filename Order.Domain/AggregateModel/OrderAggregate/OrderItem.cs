@@ -35,6 +35,8 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 
         public string GetOrderItemProductName() => _productName;
 
+        public string GetOrderItemCategory() => _category;
+
         public void AddUnits(int units)
         {
             if (units < 0)

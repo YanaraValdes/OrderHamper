@@ -10,7 +10,7 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
     {
         private readonly List<OrderItem> _orderItems;
         public OrderAddress Address { get; private set; }
-        public int _receivedId { get; private set; }
+        public int _receiverId { get; private set; }
 
         public DateTime CreatedOn { get; private set; }
 
@@ -28,7 +28,7 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
         public Order(string id, int receiverId, OrderAddress address)
         {
             var timeSpan = DateTime.Now;
-            _receivedId = receiverId;
+            _receiverId = receiverId;
             CreatedOn = timeSpan;
             ModifiedOn = timeSpan;
             Id = id;
@@ -80,9 +80,9 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
             }
         }
 
-        public void SetBuyerId(int id)
+        public void SetReceiverId(int id)
         {
-            _receivedId = id;
+            _receiverId = id;
         }
 
         public void SetShippedStatus()
