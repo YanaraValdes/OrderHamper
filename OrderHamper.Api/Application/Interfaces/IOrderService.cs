@@ -8,7 +8,7 @@ namespace OrderHamper.Api.Application.Interfaces
 {
     public interface IOrderService
     {
-        public Task<List<OrderDetails>> GetAllOrders();
+        //public Task<List<OrderDetails>> GetAllOrders();
         public Task<int> AddOrder(OrderDetails order);
     }
 }

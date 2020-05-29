@@ -28,15 +28,15 @@ namespace OrderHamper.Api.Application.Services
             return result;
         }
 
-        public async Task<List<OrderDto.OrderDetails>> GetAllOrders()
-        {
-            var orders = await _orderRepository.GetAll();
-            var orderDetails = orders.Select(order =>
-            {
-                var detail = order.ToOrderDetails();
-                return detail;
-            }).ToList();
-            return orderDetails;
-        }
+        //public async Task<List<OrderDto.OrderDetails>> GetAllOrders()
+        //{
+        //    var orders = await _orderRepository.GetAll();
+        //    var orderDetails = orders.Select(order =>
+        //    {
+        //        var detail = order.ToOrderDetails();
+        //        return detail;
+        //    }).ToList();
+        //    return orderDetails;
+        //}
     }
 }

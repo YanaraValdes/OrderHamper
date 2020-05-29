@@ -26,13 +26,7 @@ namespace OrderHamper.Persistence.Repositories
            var result =  await _context.Order.AddAsync(order);
             await _context.SaveEntitiesAsync();
             return result.Entity.Id;
-        }
-
-        public async Task<List<Order>> GetAll()
-        {
-            var orderList = await _context.Order.Include(s=>s.OrderItems).Include(o=> o.Address).ToListAsync();
-            return orderList;
-        }
+        }        
 
         public Task<int> Update(Order order)
         {
