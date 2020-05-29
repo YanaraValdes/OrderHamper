@@ -8,10 +8,10 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 {
     public interface IOrderRepository : IRepository<Order>
     {
-        Order Add(Order order);
+        Task<int> Add(Order order);
 
-        void Update(Order order);
+        Task<int> Update(Order order);
 
-        Task<Order> GetAsync(int orderId);
+        Task<List<Order>> GetAll();
     }
 }

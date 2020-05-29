@@ -6,11 +6,11 @@ using System.Text;
 
 namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 {
-    public class OrderItem
+    public class OrderItem: Entity
     {
-        private readonly string _productName;
-        private readonly string _category;
-        private int _units;
+        public  string ProductName { get; private set; }
+        public  string Category { get; private set; }
+        public int Units { get; private set; }
 
         public int ProductId { get; private set; }
 
@@ -22,20 +22,13 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
                 throw new OrderingDomainException("Invalid number of units");
             }           
 
-             ProductId = productId;
-            _productName = productName;          
-            _units = units;
-            _category = category;
+            ProductId = productId;
+            ProductName = productName;          
+            Units = units;
+            Category = category;
         }
 
-        public int GetUnits()
-        {
-            return _units;
-        }
-
-        public string GetOrderItemProductName() => _productName;
-
-        public string GetOrderItemCategory() => _category;
+        
 
         public void AddUnits(int units)
         {
@@ -44,7 +37,7 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
                 throw new OrderingDomainException("Invalid units");
             }
 
-            _units += units;
+            Units += units;
         }
     }
    

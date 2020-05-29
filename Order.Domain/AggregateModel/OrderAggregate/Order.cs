@@ -8,9 +8,10 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 {
     public class Order : Entity, IAggregateRoot
     {
-        private readonly List<OrderItem> _orderItems;
+        public List<OrderItem> _orderItems;
         public OrderAddress Address { get; private set; }
-        public int ReceiverId { get; private set; }        
+        public int OrderAddressId { get; set; }
+        public string ReceiverName { get; private set; }        
 
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
         public OrderStatus OrderStatus { get; private set; }
@@ -18,15 +19,15 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 
         public Order()
         {
-
+            _orderItems = new List<OrderItem>();
         }
 
-        public Order(string id, int receiverId, OrderAddress address)
-        {            
-            ReceiverId = receiverId;            
+        public Order(int id, string receiverName, OrderAddress address)
+        {
+            ReceiverName = receiverName;
             Id = id;
             Address = address;
-            OrderStatusId = OrderStatus.Submitted.Id;
+            OrderStatusId = OrderStatus.Submitted.OrderStatusId;
 
         }
 
@@ -37,30 +38,27 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 
         // DDD Patterns comment
         // This Order AggregateRoot's method "AddOrderitem()" should be the only way to add Items to the Order,
-        // so any behavior (discounts, etc.) and validations are controlled by the AggregateRoot 
+        // so any behavior and validations are controlled by the AggregateRoot 
         // in order to maintain consistency between the whole Aggregate. 
         public void AddOrderItem(int productId, string productName, string category, int units = 1)
         {
-            var existingOrderForProduct = _orderItems.Where(o => o.ProductId == productId)
-                .SingleOrDefault();
+            _orderItems = new List<OrderItem>();
+            //var existingOrderForProduct = _orderItems.Where(o => o.ProductId == productId)
+            //    .SingleOrDefault();
 
-            if (existingOrderForProduct != null)
-            {      
-                existingOrderForProduct.AddUnits(units);
-            }
-            else
-            {
+            //if (existingOrderForProduct != null)
+            //{      
+            //    existingOrderForProduct.AddUnits(units);
+            //}
+            //else
+            //{
                 //add validated new order item
                 var orderItem = new OrderItem(productId, productName, category, units);
                 _orderItems.Add(orderItem);
-            }
-        }
-        
+            //}
+        }     
 
-        public void SetReceiverId(int id)
-        {
-            ReceiverId = id;
-        }        
+           
 
         private void StatusChangeException(OrderStatus orderStatusToChange)
         {
@@ -69,7 +67,7 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 
         public decimal GetTotal()
         {
-            return _orderItems.Sum(o => o.GetUnits());
+            return _orderItems.Sum(o => o.Units);
         }      
 
     }

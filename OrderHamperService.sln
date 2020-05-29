@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderHamper.Api", "HamperSystem\OrderHamper.Api.csproj", "{0771F69B-314B-437D-9614-A9419F42C3AF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderHamper.Domain", "Order.Domain\OrderHamper.Domain.csproj", "{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{0C119ED0-AF78-43C3-9F6D-45DF101E8672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderHamper.Persistence", "OrderHamper.Persistence\OrderHamper.Persistence.csproj", "{B4594EFA-8991-462B-893A-60333CE14045}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderHamper.Persistence", "OrderHamper.Persistence\OrderHamper.Persistence.csproj", "{B4594EFA-8991-462B-893A-60333CE14045}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderHamper.Api", "OrderHamper.Api\OrderHamper.Api.csproj", "{9CDCCA67-611D-4EEA-8374-88542CB28415}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0771F69B-314B-437D-9614-A9419F42C3AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0771F69B-314B-437D-9614-A9419F42C3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0771F69B-314B-437D-9614-A9419F42C3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0771F69B-314B-437D-9614-A9419F42C3AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98CEE190-ABDB-43C7-BCFC-40A210EC9C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,6 +25,10 @@ Global
 		{B4594EFA-8991-462B-893A-60333CE14045}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4594EFA-8991-462B-893A-60333CE14045}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4594EFA-8991-462B-893A-60333CE14045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CDCCA67-611D-4EEA-8374-88542CB28415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CDCCA67-611D-4EEA-8374-88542CB28415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CDCCA67-611D-4EEA-8374-88542CB28415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CDCCA67-611D-4EEA-8374-88542CB28415}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

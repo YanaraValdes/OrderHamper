@@ -11,9 +11,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using OrderHamper.Api.Application.Interfaces;
+using OrderHamper.Api.Application.Services;
+using OrderHamper.Domain.AggregateModel.OrderAggregate;
+using OrderHamper.Persistence;
 using OrderHamper.Persistence.Data;
+using OrderHamper.Persistence.Repositories;
 
-namespace HamperSystem
+namespace OrderHamper.Api
 {
     public class Startup
     {
@@ -29,7 +34,9 @@ namespace HamperSystem
         {
             services.AddControllers();
             services.AddDbContext<OrderHamperContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("OrderHamperDB")));
+               options.UseSqlServer(Configuration.GetConnectionString("OrderHamperDB")));
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderService, OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

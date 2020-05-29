@@ -10,11 +10,11 @@ namespace OrderHamper.Domain.SeedWork
     {
         public string Name { get; private set; }
 
-        public int Id { get; private set; }
+        public int OrderStatusId { get; private set; }
 
         protected Enumeration(int id, string name)
         {
-            Id = id;
+            OrderStatusId = id;
             Name = name;
         }
 
@@ -35,22 +35,22 @@ namespace OrderHamper.Domain.SeedWork
                 return false;
 
             var typeMatches = GetType().Equals(obj.GetType());
-            var valueMatches = Id.Equals(otherValue.Id);
+            var valueMatches = OrderStatusId.Equals(otherValue.OrderStatusId);
 
             return typeMatches && valueMatches;
         }
 
-        public override int GetHashCode() => Id.GetHashCode();
+        public override int GetHashCode() => OrderStatusId.GetHashCode();
 
         public static int AbsoluteDifference(Enumeration firstValue, Enumeration secondValue)
         {
-            var absoluteDifference = Math.Abs(firstValue.Id - secondValue.Id);
+            var absoluteDifference = Math.Abs(firstValue.OrderStatusId - secondValue.OrderStatusId);
             return absoluteDifference;
         }
 
         public static T FromValue<T>(int value) where T : Enumeration
         {
-            var matchingItem = Parse<T, int>(value, "value", item => item.Id == value);
+            var matchingItem = Parse<T, int>(value, "value", item => item.OrderStatusId == value);
             return matchingItem;
         }
 
@@ -70,6 +70,6 @@ namespace OrderHamper.Domain.SeedWork
             return matchingItem;
         }
 
-        public int CompareTo(object other) => Id.CompareTo(((Enumeration)other).Id);
+        public int CompareTo(object other) => OrderStatusId.CompareTo(((Enumeration)other).OrderStatusId);
     }
 }

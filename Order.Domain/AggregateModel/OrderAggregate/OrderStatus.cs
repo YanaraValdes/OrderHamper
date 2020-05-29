@@ -16,8 +16,8 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
         public static OrderStatus Shipped = new OrderStatus(5, nameof(Shipped).ToLowerInvariant());
         public static OrderStatus Cancelled = new OrderStatus(6, nameof(Cancelled).ToLowerInvariant());
 
-        public OrderStatus(int id, string name)
-            : base(id, name)
+        public OrderStatus(int OrderStatusId, string name)
+            : base(OrderStatusId, name)
         {
         }
 
@@ -39,7 +39,7 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 
         public static OrderStatus From(int id)
         {
-            var state = List().SingleOrDefault(s => s.Id == id);
+            var state = List().SingleOrDefault(s => s.OrderStatusId == id);
 
             if (state == null)
             {
