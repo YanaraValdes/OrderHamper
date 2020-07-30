@@ -46,7 +46,7 @@ namespace OrderHamper.Api.Application.Behaviours
                 });
             }
 
-            var response = new Response { 
+            var response = new OrderCreatedResponse { 
                 Error = errors
             };
 

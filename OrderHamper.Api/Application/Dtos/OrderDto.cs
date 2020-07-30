@@ -16,7 +16,7 @@ namespace OrderHamper.Api.Application.Dtos
             public string Category { get; set; }
             public string ProductName { get; set; }
         }
-        public class OrderDetails : Response
+        public class OrderDetails 
         {
             public int Ordernumber { get; set; }
             public int OrderaddressId { get; set; }

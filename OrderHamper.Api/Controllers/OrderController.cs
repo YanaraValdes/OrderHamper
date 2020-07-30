@@ -18,8 +18,7 @@ namespace OrderHamper.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
-    {
-        //private IOrderService _orderService;
+    {        
         private IMediator _mediator;
         public OrderController(IMediator mediator)
         {
@@ -29,8 +28,7 @@ namespace OrderHamper.Api.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetOrdersAsync([FromQuery] GetOrderListQuery request)
-        {
-            //var orders =  await _orderService.GetAllOrders();
+        {           
             var orders = await _mediator.Send(request);
             return Ok(orders);
         }
@@ -41,7 +39,6 @@ namespace OrderHamper.Api.Controllers
         public async Task<IActionResult> AddOrderAsync([FromBody] CreateOrderCommand order)
         {
             var result = await _mediator.Send(order);
-            //var id = await _orderService.AddOrder(order);
             return result.Error == null ? (IActionResult)Ok(result.OrderId) : BadRequest(result.Error);
         }
 

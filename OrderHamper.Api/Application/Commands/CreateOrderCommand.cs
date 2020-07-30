@@ -7,7 +7,7 @@ using static OrderHamper.Api.Application.Dtos.OrderDto;
 
 namespace OrderHamper.Api.Application.Commands
 {
-    public class CreateOrderCommand: IRequest<Response>
+    public class CreateOrderCommand: IRequest<OrderCreatedResponse>
     {
         [JsonIgnore]
         public int Ordernumber { get; set; }

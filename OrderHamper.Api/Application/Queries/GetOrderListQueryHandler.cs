@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using OrderHamper.Api.Application.Dtos;
+using OrderHamper.Api.Application.Extensions;
 using OrderHamper.Persistence.Data;
 using System;
 using System.Collections.Generic;
