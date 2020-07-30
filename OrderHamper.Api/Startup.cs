@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Northwind.Application.Common.Behaviours;
 using OrderHamper.Api.Application.Behaviours;
 using OrderHamper.Api.Application.Interfaces;
-using OrderHamper.Api.Application.Services;
 using OrderHamper.Domain.AggregateModel.OrderAggregate;
 using OrderHamper.Persistence.Data;
 using OrderHamper.Persistence.Repositories;
@@ -32,7 +31,6 @@ namespace OrderHamper.Api
             services.AddDbContext<OrderHamperContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("OrderHamperDB")));
             services.AddTransient<IOrderRepository, OrderRepository>();
-            services.AddTransient<IOrderService, OrderService>();
             services.AddMediatR(typeof(Startup));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
