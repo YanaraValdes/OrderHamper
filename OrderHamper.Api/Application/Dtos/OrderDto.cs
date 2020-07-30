@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace OrderHamper.Api.Application.Dtos
@@ -9,12 +10,13 @@ namespace OrderHamper.Api.Application.Dtos
     {
         public class OrderItemDto
         {
+            [JsonIgnore]
             public int ProductId { get; set; }
             public int Units { get; set; }
             public string Category { get; set; }
             public string ProductName { get; set; }
         }
-        public class OrderDetails
+        public class OrderDetails : Response
         {
             public int Ordernumber { get; set; }
             public int OrderaddressId { get; set; }

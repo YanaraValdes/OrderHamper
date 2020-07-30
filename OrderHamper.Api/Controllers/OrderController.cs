@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OrderHamper.Api.Application.Commands;
+using OrderHamper.Api.Application.Exeptions;
 using OrderHamper.Api.Application.Interfaces;
 using OrderHamper.Api.Application.Queries;
 using OrderHamper.Domain.AggregateModel.OrderAggregate;
@@ -13,6 +14,7 @@ using static OrderHamper.Api.Application.Dtos.OrderDto;
 
 namespace OrderHamper.Api.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
@@ -25,19 +27,24 @@ namespace OrderHamper.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetOrdersAsync([FromQuery]GetOrderListQuery request)         
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetOrdersAsync([FromQuery] GetOrderListQuery request)
         {
             //var orders =  await _orderService.GetAllOrders();
             var orders = await _mediator.Send(request);
-            return Ok(orders); 
+            return Ok(orders);
         }
-                
-        [HttpPost]        
-        public async Task<IActionResult> AddOrderAsync([FromBody]CreateOrderCommand order)
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddOrderAsync([FromBody] CreateOrderCommand order)
         {
-            var id = await _mediator.Send(order);
+            var result = await _mediator.Send(order);
             //var id = await _orderService.AddOrder(order);
-            return Ok(id);
+            return result.Error == null ? (IActionResult)Ok(result.OrderId) : BadRequest(result.Error);
         }
+
     }
 }
+
