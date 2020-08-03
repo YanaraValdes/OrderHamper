@@ -1,20 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Northwind.Application.Common.Behaviours;
+using OrderHamper.Api.Application.Behaviours;
 using OrderHamper.Api.Application.Interfaces;
-using OrderHamper.Api.Application.Services;
 using OrderHamper.Domain.AggregateModel.OrderAggregate;
-using OrderHamper.Persistence;
 using OrderHamper.Persistence.Data;
 using OrderHamper.Persistence.Repositories;
 
@@ -36,7 +31,11 @@ namespace OrderHamper.Api
             services.AddDbContext<OrderHamperContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("OrderHamperDB")));
             services.AddTransient<IOrderRepository, OrderRepository>();
-            services.AddTransient<IOrderService, OrderService>();
+            services.AddMediatR(typeof(Startup));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+            services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +56,18 @@ namespace OrderHamper.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
+            //app.UseFluentValidationExceptionHandler();
         }
     }
 }

@@ -12,6 +12,5 @@ namespace OrderHamper.Domain.AggregateModel.OrderAggregate
 
         Task<int> Update(Order order);
 
-        Task<List<Order>> GetAll();
     }
 }
